@@ -1,0 +1,90 @@
+routertechnova#show run
+Building configuration...
+
+Current configuration : 915 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname routertechnova
+!
+!
+!
+enable secret 5 $1$mERr$GvDaTJK9lhdXRUPWKA74O0
+!
+!
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+!
+!
+username admin secret 5 $1$mERr$vTbHul1N28cEp8lkLqr0f/
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+ip domain-name technova.local
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.10.1 255.255.255.240
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:ACAD:10::1/64
+!
+interface GigabitEthernet0/0/1
+ ip address 192.168.20.1 255.255.255.240
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:ACAD:20::1/64
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ password 7 082243401A160912
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+end
+
